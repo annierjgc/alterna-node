@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+// import { Request, }
 
 const app = express();
 
@@ -48,6 +49,27 @@ app.get('/heroe/:alte', (req: Request, res: Response) => {
     res.json(heroe);
 
 });
+
+app.get('/heroe/:id', (req: Request, res: Response) => {
+    const id = req.params.alte;
+
+    const heroe = heroes.find((hero: Heroe) => hero.id === Number.parseInt(id))
+
+    if (!heroe) {
+        return res.status(404).json(
+            {
+                message: 'Super Hero Not Found'
+            }
+        );
+    }
+
+    res.json(heroe);
+
+});
+
+app.post('/heroe'), (req: Request, res: Response) => {
+
+}
 
 app.listen(port, () => {
     console.log(`The application is listening on port ${port}!`);
